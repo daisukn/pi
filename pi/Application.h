@@ -3,7 +3,7 @@
 #include <SDL2/SDL_ttf.h>
 
 
-#define SCREEN_SIZE 256
+#define SCREEN_SIZE 512
 
 
 // ピクセルを表示する座標

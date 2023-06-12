@@ -28,24 +28,19 @@ Application::Application()
     {
         std::cout << "Can not create renderer" << std::endl;
     }
-
+    
+    screenTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_SIZE, SCREEN_SIZE);
     
     if (TTF_Init() < 0)
     {
         std::cout << "TTF_INit(): " << TTF_GetError() << std::endl;
      }
     // フォント生成
-    font = TTF_OpenFont("rounded.ttf", 12);
+    font = TTF_OpenFont("rounded.ttf", 24);
     if(font == NULL)
     {
         std::cout << "can not create Font" << std::endl;
     }
-    SDL_Color color = {255, 255, 255, 255};
-    
-    fontSurface = TTF_RenderText_Solid(font, "", color);
-    fontTexture = SDL_CreateTextureFromSurface(renderer, fontSurface);
-    
-    screenTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_SIZE, SCREEN_SIZE);
     
     // 中心点を計算
     centerPosition.x = SCREEN_SIZE / 2;
@@ -148,7 +143,7 @@ void Application::Execute()
         }
         SDL_SetRenderTarget(renderer, NULL); // レンダーターゲットをデフォルトに戻す
         
-        double area = (SCREEN_SIZE*SCREEN_SIZE) * inCicleCount / allCounter;
+        double area = (double)(SCREEN_SIZE*SCREEN_SIZE) * (double)inCicleCount / (double)allCounter;
         pi = area / ((SCREEN_SIZE/2) * (SCREEN_SIZE/2));
         std::cout << area << std::endl;
         
